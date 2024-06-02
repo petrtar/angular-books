@@ -15,15 +15,7 @@ export class EditBookComponent {
 
   ngOnInit() {
     if (this.book) {
-      this.bookForm.patchValue({
-        id: this.book.id,
-        title: this.book.title,
-        author: this.book.author,
-        publication_year: this.book.publication_year,
-        genre: this.book.genre,
-        description: this.book.description,
-        cover_image: this.book.cover_image,
-      });
+      this.bookForm.patchValue(this.book);
     }
   }
 

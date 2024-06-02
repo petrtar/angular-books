@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { IBook } from '../../models/books';
-import { books } from '../../data/books';
 import { BookService } from '../../services/book.service';
+import { Store } from '@ngrx/store';
+import { selectBooks } from '../../store/books.selectors';
+import { BooksActions } from '../../store/books.actions';
 
 @Component({
   selector: 'app-book-list',
@@ -9,14 +11,14 @@ import { BookService } from '../../services/book.service';
   styleUrl: './book-list.component.css',
 })
 export class BookListComponent {
-  constructor(private bookService: BookService) {}
+  constructor(private bookService: BookService, private store: Store) {}
 
-  books: IBook[] = [];
+  books$ = this.store.select(selectBooks);
   editedBookId: number | null = null;
 
   ngOnInit() {
     this.bookService.getAllBooks().subscribe((data) => {
-      this.books = data;
+      this.store.dispatch(BooksActions.retrievedBookList({ books: data }));
     });
   }
 

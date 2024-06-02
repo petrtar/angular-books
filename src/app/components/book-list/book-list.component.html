@@ -1,7 +1,7 @@
 <h1>Book catalog</h1>
 
 <div class="book-container">
-  <div *ngFor="let book of books" class="item-book">
+  <div *ngFor="let book of books$ | async" class="item-book">
     <img src="{{ book.cover_image }}" />
     <ng-container
       *ngIf="editedBookId === book.id; then editBlock; else showBlock"
