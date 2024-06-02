@@ -1,0 +1,24 @@
+<h1>Book catalog</h1>
+
+<div class="book-container">
+  <div *ngFor="let book of books" class="item-book">
+    <img src="{{ book.cover_image }}" />
+    <ng-container
+      *ngIf="editedBookId === book.id; then editBlock; else showBlock"
+    >
+    </ng-container>
+    <ng-template #showBlock>
+      <h3>{{ book.title | titlecase }}</h3>
+      <p>author: {{ book.author }}</p>
+      <p>publication year: {{ book.publication_year }}</p>
+      <p>genre: {{ book.genre }}</p>
+      <p>description: {{ book.description }}</p>
+    </ng-template>
+    <ng-template #editBlock
+      ><app-edit-book [book]="book"></app-edit-book
+    ></ng-template>
+    <button (click)="edit(book.id)">
+      {{ editedBookId === book.id ? "Сохранить" : "Редактировать" }}
+    </button>
+  </div>
+</div>

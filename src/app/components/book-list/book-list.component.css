@@ -1,0 +1,38 @@
+h1 {
+  color: white;
+  text-align: center;
+  font-size: 30px;
+}
+
+.book-container {
+  max-width: 1024px;
+  margin: 10px auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.item-book {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+
+  h3 {
+    text-align: center;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+
+  p {
+    margin: 5px;
+  }
+}
