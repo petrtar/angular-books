@@ -9,8 +9,15 @@ export const booksReducer = createReducer(
   initialState,
   on(BooksActions.retrievedBookList, (_state, { books }) => books),
   on(BooksActions.addBook, (state, { newBook }) => {
-    if (state.findIndex((book) => book.id === newBook.id) > -1) return state;
+    const books = [...state];
+    const index = state.findIndex((book) => book.id === newBook.id);
 
-    return [...state, newBook];
+    if (index >= 0) {
+      books[index] = newBook;
+    } else {
+      books.push(newBook);
+    }
+
+    return [...books];
   })
 );
