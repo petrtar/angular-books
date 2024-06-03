@@ -42,7 +42,6 @@ export class EditBookComponent {
   });
 
   onSubmit() {
-    console.log(this.bookForm.value);
     if (this.bookForm.value.id) {
       this.bookService
         .updateBook(this.bookForm.value as IBook)

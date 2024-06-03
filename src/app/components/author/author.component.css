@@ -1,0 +1,30 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 700px;
+  margin: auto;
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+  color: #fff;
+  font-size: 50px;
+}
+
+img {
+  margin-top: 20px;
+  width: 500px;
+}
+
+p {
+  color: #fff;
+  font-size: 24px;
+  text-align: center;
+}
+
+a {
+  color: #fff;
+  font-size: 24px;
+}

@@ -7,7 +7,9 @@
   <div *ngFor="let book of books$ | async" class="item-book">
     <img src="{{ book.cover_image }}" />
     <h3>{{ book.title | titlecase }}</h3>
-    <p>author: {{ book.author }}</p>
+    <p>
+      author: <a [routerLink]="['/author', book.author]">{{ book.author }}</a>
+    </p>
     <p>publication year: {{ book.publication_year }}</p>
     <p>genre: {{ book.genre }}</p>
     <p>description: {{ book.description }}</p>
