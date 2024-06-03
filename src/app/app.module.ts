@@ -10,9 +10,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EditBookComponent } from './components/edit-book/edit-book.component';
 import { StoreModule } from '@ngrx/store';
 import { booksReducer } from './store/books.reducer';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
-  declarations: [AppComponent, BookListComponent, EditBookComponent],
+  declarations: [AppComponent, BookListComponent, EditBookComponent, ModalComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

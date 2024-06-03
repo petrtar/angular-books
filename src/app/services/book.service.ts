@@ -11,4 +11,11 @@ export class BookService {
   getAllBooks() {
     return this.http.get<IBook[]>('https://localhost:3000/api/v1/books');
   }
+
+  updateBook(book: IBook) {
+    return this.http.patch<IBook>(
+      `https://localhost:3000/api/v1/book/${book.id}`,
+      book
+    );
+  }
 }

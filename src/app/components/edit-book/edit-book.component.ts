@@ -1,7 +1,12 @@
-import { Component, Input } from '@angular/core';
-import { Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+
+import { Store } from '@ngrx/store';
+
 import { IBook } from '../../models/books';
+import { getBookById } from '../../store/books.selectors';
+import { BookService } from '../../services/book.service';
+import { BooksActions } from '../../store/books.actions';
 
 @Component({
   selector: 'app-edit-book',
@@ -9,13 +14,20 @@ import { IBook } from '../../models/books';
   styleUrl: './edit-book.component.css',
 })
 export class EditBookComponent {
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private store: Store,
+    private bookService: BookService
+  ) {}
 
-  @Input() book!: IBook | undefined;
+  @Input() bookId!: number | null;
+  @Output() closeModalEvent = new EventEmitter<boolean>();
 
   ngOnInit() {
-    if (this.book) {
-      this.bookForm.patchValue(this.book);
+    if (this.bookId) {
+      this.store.select(getBookById({ id: this.bookId })).subscribe((book) => {
+        if (book) this.bookForm.patchValue(book);
+      });
     }
   }
 
@@ -28,4 +40,15 @@ export class EditBookComponent {
     description: '',
     cover_image: '',
   });
+
+  onSubmit() {
+    if (this.bookForm.value.id) {
+      this.bookService
+        .updateBook(this.bookForm.value as IBook)
+        .subscribe((data) => {
+          this.store.dispatch(BooksActions.addBook({ newBook: data }));
+          this.closeModalEvent.emit(false);
+        });
+    }
+  }
 }

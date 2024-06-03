@@ -14,6 +14,7 @@ export class BookListComponent {
   constructor(private bookService: BookService, private store: Store) {}
 
   books$ = this.store.select(selectBooks);
+  isShowModal: boolean = false;
   editedBookId: number | null = null;
 
   ngOnInit() {
@@ -23,7 +24,12 @@ export class BookListComponent {
   }
 
   edit(bookId: number) {
-    if (this.editedBookId === bookId) this.editedBookId = null;
-    else this.editedBookId = bookId;
+    this.editedBookId = bookId;
+    this.isShowModal = true;
+  }
+
+  closeModal(event: boolean) {
+    this.isShowModal = event;
+    this.editedBookId = null;
   }
 }

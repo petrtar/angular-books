@@ -1,0 +1,13 @@
+.wrapper {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.content {
+  margin: 30px auto;
+  background: #fff;
+  border-radius:  5px;
+  max-width: 500px;
+  padding: 10px;
+}

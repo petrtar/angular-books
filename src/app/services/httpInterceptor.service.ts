@@ -19,9 +19,12 @@ export class httpInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const { url, method } = req;
+    const { url, method, body } = req;
     if (url.endsWith('/books') && method === 'GET') {
       return of(new HttpResponse({ status: 200, body: books }));
+    }
+    if (method === 'PATCH') {
+      return of(new HttpResponse({ status: 200, body }));
     }
     return next.handle(req);
   }
