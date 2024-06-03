@@ -1,8 +1,15 @@
-<div class="wrapper" *ngIf="author">
-  <h1>{{ author.firstName | titlecase }} {{ author.lastName | titlecase }}</h1>
-  <img [src]="author.photo" alt="" />
-  <p>
-    {{ author.description }}
-  </p>
-  <a routerLink="/">Return</a>
+<div class="wrapper">
+  <ng-container *ngIf="author; else emptyAuthor">
+    <h1>
+      {{ author.firstName | titlecase }} {{ author.lastName | titlecase }}
+    </h1>
+    <img [src]="author.photo" alt="" />
+    <p>
+      {{ author.description }}
+    </p>
+    <a routerLink="/">Return</a>
+  </ng-container>
+  <ng-template #emptyAuthor>
+    <h2>Sorry, this author is not in the library</h2>
+  </ng-template>
 </div>

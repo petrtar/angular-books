@@ -33,8 +33,7 @@ export class httpInterceptor implements HttpInterceptor {
       return of(new HttpResponse({ status: 200, body: newBook }));
     }
     if (url.includes('/author') && method === 'GET') {
-      const newUrl = new URL(url);
-      const id = newUrl.pathname.split('/').at(-1);
+      const id = new URL(url).pathname.split('/').at(-1);
       const author = authors.find((author) => author.authorId === id);
       return of(new HttpResponse({ status: 200, body: author }));
     }

@@ -13,6 +13,12 @@ h1 {
   font-size: 50px;
 }
 
+h2 {
+  color: #fff;
+  margin-top: 50px;
+  font-size: 40px;
+}
+
 img {
   margin-top: 20px;
   width: 500px;
