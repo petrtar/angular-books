@@ -3,7 +3,14 @@
   <label
     >title: <input id="title-name" type="text" formControlName="title"
   /></label>
-  <label>author: <input type="text" formControlName="author" /></label>
+  <label
+    >author:
+    <select formControlName="author">
+      <option *ngFor="let item of authors" [ngValue]="item">
+        {{ item.firstName }} {{ item.lastName }}
+      </option>
+    </select></label
+  >
 
   <label
     >publication year: <input type="text" formControlName="publication_year"
@@ -18,5 +25,6 @@
   <label
     >cover image: <input type="text" formControlName="cover_image"
   /></label>
-  <button type="submit">Save</button>
+  <button [disabled]="bookForm.status === 'INVALID'" type="submit">Save</button>
+  <p *ngIf="bookForm.status === 'INVALID'">Please, fill the gaps</p>
 </form>
