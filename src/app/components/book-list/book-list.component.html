@@ -1,5 +1,8 @@
 <h1>Book catalog</h1>
 
+<div class="add-button">
+  <button (click)="addNewBook()">Add new book</button>
+</div>
 <div class="book-container">
   <div *ngFor="let book of books$ | async" class="item-book">
     <img src="{{ book.cover_image }}" />

@@ -26,6 +26,11 @@ export class httpInterceptor implements HttpInterceptor {
     if (method === 'PATCH') {
       return of(new HttpResponse({ status: 200, body }));
     }
+    if (method === 'POST') {
+      const id = Math.trunc(Math.random() * 1000);
+      const newBook = { ...body, id };
+      return of(new HttpResponse({ status: 200, body: newBook }));
+    }
     return next.handle(req);
   }
 }

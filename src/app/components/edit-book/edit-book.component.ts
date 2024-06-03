@@ -42,9 +42,17 @@ export class EditBookComponent {
   });
 
   onSubmit() {
+    console.log(this.bookForm.value);
     if (this.bookForm.value.id) {
       this.bookService
         .updateBook(this.bookForm.value as IBook)
+        .subscribe((data) => {
+          this.store.dispatch(BooksActions.addBook({ newBook: data }));
+          this.closeModalEvent.emit(false);
+        });
+    } else {
+      this.bookService
+        .addBook(this.bookForm.value as IBook)
         .subscribe((data) => {
           this.store.dispatch(BooksActions.addBook({ newBook: data }));
           this.closeModalEvent.emit(false);

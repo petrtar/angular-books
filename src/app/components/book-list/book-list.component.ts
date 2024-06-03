@@ -32,4 +32,8 @@ export class BookListComponent {
     this.isShowModal = event;
     this.editedBookId = null;
   }
+
+  addNewBook() {
+    this.isShowModal = true;
+  }
 }

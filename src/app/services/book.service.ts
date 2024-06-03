@@ -18,4 +18,8 @@ export class BookService {
       book
     );
   }
+
+  addBook(book: IBook) {
+    return this.http.post<IBook>('https://localhost:3000/api/v1/book', book);
+  }
 }
