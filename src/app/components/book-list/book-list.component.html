@@ -8,7 +8,10 @@
     <img src="{{ book.cover_image }}" />
     <h3>{{ book.title | titlecase }}</h3>
     <p>
-      author: <a [routerLink]="['/author', book.author]">{{ book.author }}</a>
+      author:
+      <a [routerLink]="['/author', book.authorId]"
+        >{{ book.firstName }} {{ book.lastName }}</a
+      >
     </p>
     <p>publication year: {{ book.publication_year }}</p>
     <p>genre: {{ book.genre }}</p>

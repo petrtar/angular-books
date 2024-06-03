@@ -9,6 +9,7 @@ import {
 
 import { Observable, of } from 'rxjs';
 import { books } from '../data/books';
+import { authors } from '../data/authors';
 
 /** Pass untouched request through to the next request handler. */
 @Injectable({
@@ -30,6 +31,12 @@ export class httpInterceptor implements HttpInterceptor {
       const id = Math.trunc(Math.random() * 1000);
       const newBook = { ...body, id };
       return of(new HttpResponse({ status: 200, body: newBook }));
+    }
+    if (url.includes('/author') && method === 'GET') {
+      const newUrl = new URL(url);
+      const id = newUrl.pathname.split('/').at(-1);
+      const author = authors.find((author) => author.authorId === id);
+      return of(new HttpResponse({ status: 200, body: author }));
     }
     return next.handle(req);
   }

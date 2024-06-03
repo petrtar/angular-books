@@ -5,7 +5,7 @@ import { IBook } from '../models/books';
 @Injectable({
   providedIn: 'root',
 })
-export class BookService {
+export class BookApiService {
   constructor(private http: HttpClient) {}
 
   getAllBooks() {

@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 
 import { IBook } from '../../models/books';
 import { getBookById } from '../../store/books.selectors';
-import { BookService } from '../../services/book.service';
+import { BookApiService } from '../../services/bookApi.service';
 import { BooksActions } from '../../store/books.actions';
 
 @Component({
@@ -17,7 +17,7 @@ export class EditBookComponent {
   constructor(
     private fb: FormBuilder,
     private store: Store,
-    private bookService: BookService
+    private bookApiService: BookApiService
   ) {}
 
   @Input() bookId!: number | null;
@@ -34,7 +34,9 @@ export class EditBookComponent {
   bookForm = this.fb.group<IBook>({
     id: 0,
     title: '',
-    author: '',
+    authorId: '',
+    firstName: '',
+    lastName: '',
     publication_year: '',
     genre: '',
     description: '',
@@ -43,14 +45,14 @@ export class EditBookComponent {
 
   onSubmit() {
     if (this.bookForm.value.id) {
-      this.bookService
+      this.bookApiService
         .updateBook(this.bookForm.value as IBook)
         .subscribe((data) => {
           this.store.dispatch(BooksActions.addBook({ newBook: data }));
           this.closeModalEvent.emit(false);
         });
     } else {
-      this.bookService
+      this.bookApiService
         .addBook(this.bookForm.value as IBook)
         .subscribe((data) => {
           this.store.dispatch(BooksActions.addBook({ newBook: data }));

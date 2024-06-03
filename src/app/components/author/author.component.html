@@ -1,14 +1,8 @@
-<div class="wrapper">
-  <h1>{{ authorName | titlecase }}</h1>
-  <img
-    src="https://flomaster.top/uploads/posts/2023-10/1697596747_flomaster-top-p-pisatel-risunok-vkontakte-32.jpg"
-    alt=""
-  />
+<div class="wrapper" *ngIf="author">
+  <h1>{{ author.firstName | titlecase }} {{ author.lastName | titlecase }}</h1>
+  <img [src]="author.photo" alt="" />
   <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus earum
-    deleniti reprehenderit nulla libero suscipit voluptates consectetur,
-    sapiente eius odio officiis modi cumque. Corrupti cumque nam in tenetur
-    nobis expedita?
+    {{ author.description }}
   </p>
   <a routerLink="/">Return</a>
 </div>

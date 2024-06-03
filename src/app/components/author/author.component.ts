@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AuthorApiService } from '../../services/authorApi.service';
+import { IAuthor } from '../../models/author';
 
 @Component({
   selector: 'app-author',
@@ -7,10 +9,16 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './author.component.css',
 })
 export class AuthorComponent {
-  constructor(private route: ActivatedRoute) {}
-  authorName = '';
+  constructor(
+    private route: ActivatedRoute,
+    private authorApiService: AuthorApiService
+  ) {}
+  author: IAuthor | undefined;
 
   ngOnInit() {
-    this.authorName = this.route.snapshot.paramMap.get('id')!;
+    const id = this.route.snapshot.paramMap.get('id')!;
+    this.authorApiService.getAuthorById(id).subscribe((data) => {
+      this.author = data;
+    });
   }
 }
